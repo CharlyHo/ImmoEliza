@@ -79,11 +79,11 @@ def extract_data_from_url(url):
         output = {
             "Locality": props.get("location", {}).get("locality"),
             "Type of property": props.get("type"),
-            "Price": props.get("price"),
-            "Number of rooms": props.get("bedroomCount"),
-            "Living Area": props.get("netHabitableSurface"),
-            "Garden": int(props.get("hasGarden", False)),
-            "Swimming pool": int(props.get("hasSwimmingPool", False)),
+            "Price": safe_float(props.get("price")),
+            "Number of rooms": safe_int(props.get("bedroomCount")),
+            "Living Area": safe_float(props.get("netHabitableSurface")),
+            "Garden": safe_bool(props.get("hasGarden", False)),
+            "Swimming pool": safe_bool(props.get("hasSwimmingPool", False)),
         }
 
         return output
